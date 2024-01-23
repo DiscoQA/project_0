@@ -16,12 +16,12 @@ def test_BP1():
     '''Передаем драйвер и класс утилиты'''
     options = webdriver.ChromeOptions()
     options.add_experimental_option("detach", True)
-    g = Service('.\\chromedriver.exe')
+    g = Service('..\\chromedriver.exe')
     driver = webdriver.Chrome(options=options, service=g)
     ut = Util(driver)
 
 
-    print('Start test')
+    print('Start test') #df
 
     '''Авторизация'''
     print('Start auth...')
