@@ -1,7 +1,7 @@
 
 # https://playgames.ru/  <- Объект тестирования
 
-'''Set Base class'''
+'''Базовый класс'''
 class Base():
     def __init__(self, driver):
         self.driver = driver

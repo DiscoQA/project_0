@@ -6,12 +6,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-'''Страница заказа (корзина)'''
+'''Страница заказа (корзина) https://playgames.ru/order/'''
 
 class Order_page(Base):
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+
 
     # Creds
     order_page_url = 'https://playgames.ru/order/'
@@ -69,7 +67,7 @@ class Order_page(Base):
         print ('ZIP entered')
 
     # Methods
-    def set_order_fields(self):
+    def set_order_fields(self): #Заполняем данные по доставке
         self.assert_url(self.order_page_url) #Проверяем, что находится на странице заказа
         self.assert_word(self.item_name_elem(), self.item_name)
         self.enter_last_name()

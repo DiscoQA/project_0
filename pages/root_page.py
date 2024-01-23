@@ -5,12 +5,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-'''Корневая страница - страница предназначена для перенаправления в каталог всего что касается PS '''
+'''Корневая страница - страница предназначена для перенаправления в каталог всего что касается PS https://playgames.ru/ ---> https://playgames.ru/category/videoigry/playstation/'''
 
 class Root_page(Base):
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+
 
     # Creds
     start_url = 'https://playgames.ru/'
@@ -35,7 +33,7 @@ class Root_page(Base):
         print('PS Logo clicked')
 
     # Methods
-    def go_to_catalog1 (self):
+    def go_to_catalog1 (self): #Навигация по магазину
         self.assert_url(self.start_url) #Проверяем, что находимся на стартовой url
         self.press_catalog_button()
         self.press_ps_logo()

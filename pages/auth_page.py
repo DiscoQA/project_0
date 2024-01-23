@@ -1,24 +1,25 @@
-
+from environs import Env
 from base.base_set import Base
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+env = Env()
+env.read_env()
 
-'''Страница авторизации'''
+
+'''Операции на странице авторизации. 'https://playgames.ru/login/'''
 
 class Auth_page(Base):
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+
 
     # Creds
     start_url = 'https://playgames.ru/'
-    user_mail = 'bf4disco@gmail.com'
-    user_pass = 'qwerty123'
+    user_mail = env('user_mail')
+    user_pass = env('user_pass')
     auth_page_url = 'https://playgames.ru/login/'
     profile_url = 'https://playgames.ru/my/profile/'
-    user_credo = 'Andrew_1'
+    user_credo = 'Andrew1'
 
     # Locators
     auth_button_loc = '/html/body/header[1]/div[1]/div/div/div[4]/div/a'
@@ -66,19 +67,19 @@ class Auth_page(Base):
         print('Profile button clicked')
 
     # Methods
-    def auth (self):
+    def auth (self): #Авторизация в системе
         self.driver.get(self.start_url)
         self.driver.maximize_window()
         self.assert_url(self.start_url) #Проверяем соответствие текущей url заданной стартовой url
-        self.press_auth_button()
+        self.press_auth_button() #Нажимаем на кнопку авторизации
         self.assert_url(self.auth_page_url) #Проверяем соответствие текущей url заданной auth_page_url.
-        self.enter_user_name()
+        self.enter_user_name() #Ввод логина и пароля
         self.enter_user_pass()
-        self.declick_remember_me_button()
-        self.press_login_button()
-        self.get_current_url()
-        self.press_profile_button()
-        self.assert_url(self.profile_url) #Проверяем соответствие текущей url заданной profile_url.
+        self.declick_remember_me_button() # №Отжимаем кнопку ремембер ми
+        self.press_login_button()  #входим в систему
+        self.get_current_url() #Проверяем что вошли в систему. смотрим url
+        self.press_profile_button() # Заходим в свой профиль
+        self.assert_url(self.profile_url) #Проверяем соответствие текущей url заданной profile_url.те что мы в своем профиле
         self.assert_word(self.profile_name_in_sys_elem(), self.user_credo) #Проверяем отображаемое имя в системе и заданное имя на соответствие
         self.driver.back()
-        self.assert_url(self.start_url) #Проверяем, что вернулись на начальную страницу после авторизации
+        self.assert_url(self.start_url) #Проверяем, что вернулись на начальную страницу после стр. авторизации

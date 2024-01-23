@@ -5,12 +5,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-'''Каталог всего про PS / Страница перенаправления в каталог всего про PS5'''
+'''Каталог всего про PS / Страница перенаправления в каталог всего про PS5. https://playgames.ru/category/videoigry/playstation/ ---> https://playgames.ru/category/videoigry/playstation/playstation-5/'''
 
 class Catalog1_page(Base):
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+
 
     # Creds
     catalog_ps_all_url = 'https://playgames.ru/category/videoigry/playstation/'
@@ -29,7 +27,7 @@ class Catalog1_page(Base):
         print ('PS5 logo clicked')
 
     # Methods
-    def go_to_catalog2 (self):
+    def go_to_catalog2 (self): #Навигация по магазину
         self.assert_url(self.catalog_ps_all_url) #Проверяем, что находимся в каталоге всего про PS
         self.press_ps5_logo()
         self.assert_url(self.catalog_ps5_all_url) #Проверяем, что перешли в каталог №2 - каталог всего что касается PS5

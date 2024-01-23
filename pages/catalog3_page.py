@@ -7,12 +7,10 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import Keys
 
 
-'''Каталог игр для PS5 / Установка фильтров + Выбор товара + Переход в корзину'''
+'''Каталог игр для PS5 / Установка фильтров + Выбор товара + Переход в корзину. https://playgames.ru/category/videoigry/playstation/playstation-5/igry-ps5/ ---> https://playgames.ru/order/'''
 
 class Catalog3_page(Base):
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
+
 
     # Creds
     catalog_ps5_games_url = 'https://playgames.ru/category/videoigry/playstation/playstation-5/igry-ps5/'
@@ -24,7 +22,7 @@ class Catalog3_page(Base):
     filter_1_loc = '/html/body/main/section/div[3]/div[1]/div[4]/div/div/form/div[1]/div[2]/div/label[4]'
     filter_2_loc = '/html/body/main/section/div[3]/div[1]/div[4]/div/div/form/div[2]/div[2]/div/label[2]'
     filter_3_loc = '/html/body/main/section/div[3]/div[1]/div[4]/div/div/form/div[5]/div[1]'
-    filter_4_loc = '/html/body/main/section/div[3]/div[1]/div[4]/div/div/form/div[5]/div[2]/div/label[7]'
+    filter_4_loc = '/html/body/main/section/div[3]/div[1]/div[4]/div/div/form/div[5]/div[2]/div/label[8]'
     filter_5_loc = '/html/body/main/section/div[3]/div[1]/div[4]/div/div/form/div[6]/div[1]'
     filter_6_loc = '/html/body/main/section/div[3]/div[1]/div[4]/div/div/form/div[6]/div[2]/input[1]'
     filter_7_loc = '/html/body/main/section/div[3]/div[1]/div[4]/div/div/form/div[6]/div[2]/input[2]'
@@ -86,7 +84,7 @@ class Catalog3_page(Base):
         print ('Go to cart button clicked')
 
     # Methods
-    def set_filters(self):
+    def set_filters(self): #Устанавливаем 7 фильтров
         self.assert_url(self.catalog_ps5_games_url) #Проверяем, что находимся к каталоге игр для PS5
         self.set_filter_1()
         self.set_filter_2()
@@ -96,8 +94,8 @@ class Catalog3_page(Base):
         self.set_filter_6()
         self.set_filter_7()
         print('Подождем пока применятся фильтры')
-        time.sleep(5) # Система в 30% случаев не успевает отреагировать на изменение фильтров из-за чего в выборку иногда попадает ошибочный товар. Задержка помогает
-    def get_item(self):
+        time.sleep(7) # Система в 30% случаев не успевает отреагировать на изменение фильтров из-за чего в выборку иногда попадает ошибочный товар. Задержка помогает
+    def get_item(self): #Предмет в корзину
         self.press_elden_ring_ps5_add_to_cart()
         self.press_go_to_cart_button()
         self.assert_url(self.order_url) #Проверяем, что попали на страницу заказа после выбора товара
